@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPlainTextEdit>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +19,7 @@ public:
     QString fileName;
     void loadStyleSheet(QString sheet_name);
         bool isFirstTime= true;
+       void search(QString search,QPlainTextEdit *edit);
 
 private slots:
     void on_Open_clicked();
@@ -26,9 +28,9 @@ private slots:
 
     void on_actionExit_triggered();
 
-    void on_search_clicked();
-
     void on_replace_clicked();
+
+    void on_highlight_clicked();
 
 private:
     Ui::MainWindow *ui;

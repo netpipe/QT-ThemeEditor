@@ -797,6 +797,13 @@ p, li { white-space: pre-wrap; }
       <height>501</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#c1c1c1;
+color:#3c78c1;</string>
+    </property>
+    <property name="plainText">
+     <string>load theme and edit here</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="Save">
     <property name="geometry">
@@ -839,11 +846,11 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QPushButton" name="search">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>350</x>
       <y>580</y>
       <width>131</width>
       <height>28</height>
@@ -856,8 +863,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLineEdit" name="lineFind">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>530</y>
+      <x>10</x>
+      <y>510</y>
       <width>113</width>
       <height>30</height>
      </rect>
@@ -867,7 +874,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>530</y>
+      <y>510</y>
       <width>191</width>
       <height>30</height>
      </rect>
@@ -877,13 +884,39 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>530</y>
+      <y>510</y>
       <width>88</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>replace</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="highlight">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>88</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Highlight</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>570</y>
+      <width>481</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
@@ -901,6 +934,7 @@ p, li { white-space: pre-wrap; }
      <string>Menu</string>
     </property>
     <addaction name="actionExit"/>
+    <addaction name="actionOpen"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -916,6 +950,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
    </property>
   </action>
  </widget>

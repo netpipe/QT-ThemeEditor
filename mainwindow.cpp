@@ -82,11 +82,11 @@ void MainWindow::on_actionExit_triggered()
     QApplication::exit();
 }
 
-void MainWindow::on_search_clicked()
+void MainWindow::search(QString search,QPlainTextEdit *edit)
 {
 //https://doc.qt.io/archives/4.6/uitools-textfinder.html
 
-            dialog->show();
+         //   dialog->show();
 
 //    QTextCharFormat fmt;
 //    fmt.setBackground(Qt::yellow);
@@ -97,30 +97,8 @@ void MainWindow::on_search_clicked()
 //    cursor.setCharFormat(fmt);
 
 
-
-
-
-//    QString x = "start some text here end";
-//    QString s = "start";
-//    QString e = "end";
-//    int start = x.indexOf(s, 0, Qt::CaseInsensitive);
-//    int end = x.indexOf(e, Qt::CaseInsensitive);
-
-//    if(start != -1){ // we found it
-//        QString y = x.mid(start + s.length(), ((end - (start + s.length())) > -1 ? (end - (start + s.length())) : -1)); // if you dont wanna pass in a number less than -1
-//        or
-//        QString y = x.mid(start + s.length(), (end - (start + s.length()))); // should not be any issues passing in a number less than -1, still works
-
-//        qDebug() << y << (start + s.length()) << (end - (start + s.length()));
-//    }
-
-
-
-
-
-
-    QString searchString = ui->lineFind->text().toLatin1();
-    QTextDocument *document = ui->code->document(); //ui->code->document();
+    QString searchString = search.toLatin1(); //ui->lineFind->text().toLatin1();
+    QTextDocument *document = edit->document(); //ui->code->document();
 
     bool found = false;
 
@@ -140,19 +118,30 @@ void MainWindow::on_search_clicked()
         QTextCharFormat colorFormat = plainFormat;
         colorFormat.setForeground(Qt::red);
 
+
+
+
+
         while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
             highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
+
+
 
             if (!highlightCursor.isNull()) {
                 found = true;
                 highlightCursor.movePosition(QTextCursor::WordRight,
                                        QTextCursor::KeepAnchor);
                 highlightCursor.mergeCharFormat(colorFormat);
+                // highlightCursor.hasSelection();
+                 highlightCursor.insertText(ui->lineReplace->text()+" ");
             }
         }
 
+
+
+
         cursor.endEditBlock();
-        isFirstTime = false;
+       // isFirstTime = false;
 
         if (found == false) {
         //    QMessageBox::information(this, tr("Word Not Found"),                "Sorry, the word cannot be found.");
@@ -185,6 +174,9 @@ void MainWindow::on_search_clicked()
 
 void MainWindow::on_replace_clicked()
 {
+    isFirstTime = true;
+    QPlainTextEdit *test = ui->code;
+    search(ui->lineFind->text().toLatin1(),test);
 //    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
 //        {
 //            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
@@ -192,4 +184,11 @@ void MainWindow::on_replace_clicked()
 //            ui->textEdit->textCursor().insertText(replaceString);
 //            ui->textEdit->cursor().setPos(0,0);
 //        }
+}
+
+void MainWindow::on_highlight_clicked()
+{
+    isFirstTime = false;
+    QPlainTextEdit *test = ui->code;
+    search(ui->lineFind->text().toLatin1(),test);
 }
