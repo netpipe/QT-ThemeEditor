@@ -548,3 +548,8 @@ QLabel#lblTotalScore2 {
 }
 
 
+bold;
+   color: red;
+}
+
+

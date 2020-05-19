@@ -3,8 +3,8 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
-#include <ui_search.h>
-
+#include <ui_find2.h>
+#include "find.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -13,10 +13,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 ui->setupUi(this);
 
-searchwidget = new QWidget;
-    Ui::search ui;
-    ui.setupUi(searchwidget);
-// searchwidget->show();
+//searchwidget = new QWidget;
+////    Ui::search ui;
+////    ui.setupUi(searchwidget);
+//// searchwidget->show();
+
+//search2 test(searchwidget);
+//Ui::search2 test2;
+//test2.setupUi(searchwidget);
+//test.show();
+
+find2 *dialog = new find2;
+
+dialog->show();
+
 
 }
 
