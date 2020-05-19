@@ -26,7 +26,7 @@ ui->setupUi(this);
 
 dialog = new find2();
 
-  connect(dialog, SIGNAL(findtext()), this , SLOT(on_actionExit_triggered()));
+  connect(dialog, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
 
 }
 
@@ -84,5 +84,26 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_search_clicked()
 {
-        dialog->show();
+    while(ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag()))
+        {
+            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
+            ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag());
+         //   ui->code->textCursor().insertText(dialog->ui->lineReplace());
+            ui->code->cursor().setPos(0,0);
+        }
+
+    //    dialog->show();
+}
+
+
+
+void MainWindow::on_replace_clicked()
+{
+//    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
+//        {
+//            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
+//            ui->textEdit->find(findString, QTextDocument::FindFlag());
+//            ui->textEdit->textCursor().insertText(replaceString);
+//            ui->textEdit->cursor().setPos(0,0);
+//        }
 }

@@ -26,6 +26,8 @@ private slots:
 
     void on_search_clicked();
 
+    void on_replace_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

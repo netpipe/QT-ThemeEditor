@@ -14,13 +14,13 @@ class find2 : public QDialog
 public:
     explicit find2(QWidget *parent = nullptr);
     ~find2();
-
+    Ui::find2 *ui;
 private slots:
     void on_pushFind_clicked();
 signals:
     void findtext();
 private:
-    Ui::find2 *ui;
+
 };
 
 #endif // FIND_H
