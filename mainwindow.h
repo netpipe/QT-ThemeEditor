@@ -20,7 +20,7 @@ public:
     void loadStyleSheet(QString sheet_name);
         bool isFirstTime= true;
        void search(QString search,QPlainTextEdit *edit);
-
+bool replace;
 private slots:
     void on_Open_clicked();
 

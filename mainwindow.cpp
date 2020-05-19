@@ -46,6 +46,23 @@ void MainWindow::on_Open_clicked()
             content.append(file.readLine());
         ui->code->setPlainText(content);
         file.close();
+
+
+        QPalette p = ui->code->palette();
+        p.setColor(QPalette::Base, Qt::red);
+        p.setColor(QPalette::Text, Qt::white);
+        ui->code->setPalette(p);
+
+
+//        QTextCursor highlightCursor( ui->code->document());
+//     //   QTextCursor cursor(document);
+
+//        QTextCharFormat plainFormat(highlightCursor.charFormat());
+//        QTextCharFormat colorFormat = plainFormat;
+//        colorFormat.setForeground(Qt::blue);
+
+
+
 }
 
 void MainWindow::on_Save_clicked()
@@ -133,11 +150,12 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
                                        QTextCursor::KeepAnchor);
                 highlightCursor.mergeCharFormat(colorFormat);
                 // highlightCursor.hasSelection();
+                    if (replace == true)
                  highlightCursor.insertText(ui->lineReplace->text()+" ");
             }
         }
 
-
+replace=false;
 
 
         cursor.endEditBlock();
@@ -175,6 +193,7 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
 void MainWindow::on_replace_clicked()
 {
     isFirstTime = true;
+        replace=true;
     QPlainTextEdit *test = ui->code;
     search(ui->lineFind->text().toLatin1(),test);
 //    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
@@ -189,6 +208,9 @@ void MainWindow::on_replace_clicked()
 void MainWindow::on_highlight_clicked()
 {
     isFirstTime = false;
+
+
     QPlainTextEdit *test = ui->code;
     search(ui->lineFind->text().toLatin1(),test);
+
 }
