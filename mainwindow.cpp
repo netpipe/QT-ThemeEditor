@@ -214,3 +214,8 @@ void MainWindow::on_highlight_clicked()
     search(ui->lineFind->text().toLatin1(),test);
 
 }
+
+void MainWindow::on_apply_clicked()
+{
+    qApp->setStyleSheet(ui->code->toPlainText());
+}

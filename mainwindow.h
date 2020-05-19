@@ -32,6 +32,8 @@ private slots:
 
     void on_highlight_clicked();
 
+    void on_apply_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

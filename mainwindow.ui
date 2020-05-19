@@ -808,7 +808,7 @@ color:#3c78c1;</string>
    <widget class="QPushButton" name="Save">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>140</x>
       <y>580</y>
       <width>121</width>
       <height>28</height>
@@ -917,6 +917,19 @@ color:#3c78c1;</string>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="apply">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>580</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>apply</string>
     </property>
    </widget>
   </widget>
