@@ -27,9 +27,6 @@ private slots:
     void on_search_clicked();
 
 private:
-    QWidget *searchwidget;
-
-
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

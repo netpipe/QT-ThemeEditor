@@ -6,6 +6,7 @@
 #include <ui_find2.h>
 #include "find.h"
 
+find2 *dialog ;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,10 +24,9 @@ ui->setupUi(this);
 //test2.setupUi(searchwidget);
 //test.show();
 
-find2 *dialog = new find2;
+dialog = new find2();
 
-dialog->show();
-
+  connect(dialog, SIGNAL(findtext()), this , SLOT(on_actionExit_triggered()));
 
 }
 
@@ -84,5 +84,5 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_search_clicked()
 {
-        searchwidget->show();
+        dialog->show();
 }

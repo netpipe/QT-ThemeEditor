@@ -256,7 +256,7 @@ TARGET        = simple
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_search.h ui_find2.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_find2.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: simple.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -657,7 +657,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.h find.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainwindow.cpp find.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui search.ui find2.ui $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui find2.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -704,16 +704,12 @@ moc_find.cpp: find.h \
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_search.h ui_find2.h
+compiler_uic_make_all: ui_mainwindow.h ui_find2.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_search.h ui_find2.h
+	-$(DEL_FILE) ui_mainwindow.h ui_find2.h
 ui_mainwindow.h: mainwindow.ui \
 		/usr/lib64/qt5/bin/uic
 	/usr/lib64/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
-
-ui_search.h: search.ui \
-		/usr/lib64/qt5/bin/uic
-	/usr/lib64/qt5/bin/uic search.ui -o ui_search.h
 
 ui_find2.h: find2.ui \
 		/usr/lib64/qt5/bin/uic
@@ -734,12 +730,13 @@ main.o: main.cpp mainwindow.h
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h \
-		ui_find.h \
+		ui_find2.h \
 		find.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 find.o: find.cpp find.h \
-		ui_find.h
+		ui_find2.h \
+		mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o find.o find.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

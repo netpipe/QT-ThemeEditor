@@ -15,6 +15,10 @@ public:
     explicit find2(QWidget *parent = nullptr);
     ~find2();
 
+private slots:
+    void on_pushFind_clicked();
+signals:
+    void findtext();
 private:
     Ui::find2 *ui;
 };
