@@ -17,6 +17,8 @@ public:
 
     QString fileName;
     void loadStyleSheet(QString sheet_name);
+        bool isFirstTime= true;
+
 private slots:
     void on_Open_clicked();
 

@@ -84,15 +84,101 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_search_clicked()
 {
-    while(ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag()))
-        {
-            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
-            ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag());
-         //   ui->code->textCursor().insertText(dialog->ui->lineReplace());
-            ui->code->cursor().setPos(0,0);
+//https://doc.qt.io/archives/4.6/uitools-textfinder.html
+
+            dialog->show();
+
+//    QTextCharFormat fmt;
+//    fmt.setBackground(Qt::yellow);
+
+//    QTextCursor cursor(ui->code->document());
+//    cursor.setPosition(begin, QTextCursor::MoveAnchor);
+//    cursor.setPosition(end, QTextCursor::KeepAnchor);
+//    cursor.setCharFormat(fmt);
+
+
+
+
+
+//    QString x = "start some text here end";
+//    QString s = "start";
+//    QString e = "end";
+//    int start = x.indexOf(s, 0, Qt::CaseInsensitive);
+//    int end = x.indexOf(e, Qt::CaseInsensitive);
+
+//    if(start != -1){ // we found it
+//        QString y = x.mid(start + s.length(), ((end - (start + s.length())) > -1 ? (end - (start + s.length())) : -1)); // if you dont wanna pass in a number less than -1
+//        or
+//        QString y = x.mid(start + s.length(), (end - (start + s.length()))); // should not be any issues passing in a number less than -1, still works
+
+//        qDebug() << y << (start + s.length()) << (end - (start + s.length()));
+//    }
+
+
+
+
+
+
+    QString searchString = ui->lineFind->text().toLatin1();
+    QTextDocument *document = ui->code->document(); //ui->code->document();
+
+    bool found = false;
+
+    if (isFirstTime == false)
+        document->undo();
+
+    if (searchString.isEmpty()) {
+   //     QMessageBox::information(this, tr("Empty Search Field"),                "The search field is empty. Please enter a word and click Find.");
+    } else {
+
+        QTextCursor highlightCursor(document);
+        QTextCursor cursor(document);
+
+        cursor.beginEditBlock();
+
+        QTextCharFormat plainFormat(highlightCursor.charFormat());
+        QTextCharFormat colorFormat = plainFormat;
+        colorFormat.setForeground(Qt::red);
+
+        while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
+            highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
+
+            if (!highlightCursor.isNull()) {
+                found = true;
+                highlightCursor.movePosition(QTextCursor::WordRight,
+                                       QTextCursor::KeepAnchor);
+                highlightCursor.mergeCharFormat(colorFormat);
+            }
         }
 
-    //    dialog->show();
+        cursor.endEditBlock();
+        isFirstTime = false;
+
+        if (found == false) {
+        //    QMessageBox::information(this, tr("Word Not Found"),                "Sorry, the word cannot be found.");
+        }
+    }
+
+
+
+//    while(ui->code->find(ui->lineFind->text(), QTextDocument::FindFlag()))
+//        {
+//            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
+//            ui->code->find(ui->lineFind->text(), QTextDocument::FindFlag());
+//         //   ui->code->textCursor().insertText(dialog->ui->lineReplace());
+//            ui->code->cursor().setPos(0,0);
+//            ui->code->setFocus();
+//        }
+
+//    while(ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag()))
+//        {
+//            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
+//            ui->code->find(dialog->ui->lineFind->text(), QTextDocument::FindFlag());
+//         //   ui->code->textCursor().insertText(dialog->ui->lineReplace());
+//            ui->code->cursor().setPos(0,0);
+//        }
+
+
 }
 
 

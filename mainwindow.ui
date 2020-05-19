@@ -853,7 +853,7 @@ p, li { white-space: pre-wrap; }
      <string>Search/Replace</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="lineFind">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -863,7 +863,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="lineReplace">
     <property name="geometry">
      <rect>
       <x>250</x>
