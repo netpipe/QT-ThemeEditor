@@ -30,8 +30,8 @@
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:#c1c1c1;
-color:#3c78c1;</string>
+     <string notr="true">background-color:#e0e0e0;
+color:#000000;</string>
     </property>
     <property name="plainText">
      <string>load theme and edit here</string>
@@ -811,8 +811,8 @@ p, li { white-space: pre-wrap; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>98</width>
-                  <height>28</height>
+                  <width>100</width>
+                  <height>30</height>
                  </rect>
                 </property>
                 <attribute name="label">
