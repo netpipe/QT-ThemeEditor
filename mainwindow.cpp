@@ -39,6 +39,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_Open_clicked()
 {
         fileName = QFileDialog::getOpenFileName(this, tr("Open rx/tx"), "./", tr("rx/tx files (*.css *.qss *.txt)"));
+        if (fileName == ""){}else{
    //     qDebug()<< fileName.toLatin1() ;
         QFile file(fileName);
         file.open(QIODevice::Text | QIODevice::ReadOnly);
@@ -54,6 +55,7 @@ void MainWindow::on_Open_clicked()
         p.setColor(QPalette::Text, Qt::white);
         ui->code->setPalette(p);
 
+}
 
 //        QTextCursor highlightCursor( ui->code->document());
 //     //   QTextCursor cursor(document);
