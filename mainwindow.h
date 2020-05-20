@@ -21,6 +21,7 @@ public:
         bool isFirstTime= true;
        void search(QString search,QPlainTextEdit *edit);
        QString undobuffer;
+       QString undobuffer2;
 bool replace;
 private slots:
     void on_Open_clicked();

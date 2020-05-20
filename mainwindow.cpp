@@ -196,12 +196,12 @@ void MainWindow::on_replace_clicked()
 
 
     undobuffer = ui->code->toPlainText();
+    undobuffer2 = undobuffer;
     undobuffer.replace(ui->lineFind->text().toLatin1(),ui->lineReplace->text().toLatin1() );
   //  ui->code->setPlainText(undobuffer.replace("load","test"));
     ui->code->setPlainText(undobuffer);
 
     undobuffer = ui->code->toPlainText();
-    qDebug() << "replaced";
 
     search(ui->lineReplace->text().toLatin1(),plaineditptr);
 
@@ -235,9 +235,8 @@ void MainWindow::on_apply_clicked()
 
 void MainWindow::on_undo_clicked()
 {
-    qDebug()<< "undo based on position change";
     if(replace){
-           ui->code->setPlainText(undobuffer);
+           ui->code->setPlainText(undobuffer2);
         replace=false;
     }
 }
@@ -246,7 +245,6 @@ void MainWindow::on_code_selectionChanged()
 {
 
     if(replace==true){
-                qDebug()<< "undo based on position change";
            ui->code->setPlainText(undobuffer);
         replace=false;
     }
