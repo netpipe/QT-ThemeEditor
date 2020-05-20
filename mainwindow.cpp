@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <ui_find2.h>
 #include "find.h"
+#include <QDebug>
 
 find2 *dialog ;
 
@@ -141,21 +142,20 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
 
         while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
             highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
-
-
+//qDebug() << document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
 
             if (!highlightCursor.isNull()) {
                 found = true;
                 highlightCursor.movePosition(QTextCursor::WordRight,
-                                       QTextCursor::KeepAnchor);
+                                       QTextCursor::KeepAnchor,1);
                 highlightCursor.mergeCharFormat(colorFormat);
                 // highlightCursor.hasSelection();
-                    if (replace == true)
-                 highlightCursor.insertText(ui->lineReplace->text()+" ");
+                //    if (replace == true)
+                // highlightCursor.insertText(ui->lineReplace->text()+" ");
             }
         }
 
-replace=false;
+//replace=false;
 
 
         cursor.endEditBlock();
@@ -165,8 +165,6 @@ replace=false;
         //    QMessageBox::information(this, tr("Word Not Found"),                "Sorry, the word cannot be found.");
         }
     }
-
-
 
 //    while(ui->code->find(ui->lineFind->text(), QTextDocument::FindFlag()))
 //        {
@@ -193,9 +191,22 @@ replace=false;
 void MainWindow::on_replace_clicked()
 {
     isFirstTime = true;
-        replace=true;
-    QPlainTextEdit *test = ui->code;
-    search(ui->lineFind->text().toLatin1(),test);
+
+    QPlainTextEdit *plaineditptr = ui->code;
+
+
+    undobuffer = ui->code->toPlainText();
+    undobuffer.replace(ui->lineFind->text().toLatin1(),ui->lineReplace->text().toLatin1() );
+  //  ui->code->setPlainText(undobuffer.replace("load","test"));
+    ui->code->setPlainText(undobuffer);
+
+    undobuffer = ui->code->toPlainText();
+    qDebug() << "replaced";
+
+    search(ui->lineReplace->text().toLatin1(),plaineditptr);
+
+    replace=true;
+
 //    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
 //        {
 //            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
@@ -208,7 +219,7 @@ void MainWindow::on_replace_clicked()
 void MainWindow::on_highlight_clicked()
 {
     isFirstTime = false;
-
+    replace=true;
 
     QPlainTextEdit *test = ui->code;
     search(ui->lineFind->text().toLatin1(),test);
@@ -218,4 +229,40 @@ void MainWindow::on_highlight_clicked()
 void MainWindow::on_apply_clicked()
 {
     qApp->setStyleSheet(ui->code->toPlainText());
+}
+
+void MainWindow::on_replace_2_clicked()
+{
+
+}
+
+
+void MainWindow::on_undo_clicked()
+{
+    qDebug()<< "undo based on position change";
+    if(replace){
+           ui->code->setPlainText(undobuffer);
+        replace=false;
+    }
+}
+
+
+void MainWindow::on_code_blockCountChanged(int newBlockCount)
+{
+
+}
+
+void MainWindow::on_code_cursorPositionChanged()
+{
+
+}
+
+void MainWindow::on_code_selectionChanged()
+{
+
+    if(replace==true){
+                qDebug()<< "undo based on position change";
+           ui->code->setPlainText(undobuffer);
+        replace=false;
+    }
 }
