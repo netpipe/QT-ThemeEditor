@@ -231,10 +231,6 @@ void MainWindow::on_apply_clicked()
     qApp->setStyleSheet(ui->code->toPlainText());
 }
 
-void MainWindow::on_replace_2_clicked()
-{
-
-}
 
 
 void MainWindow::on_undo_clicked()
@@ -244,17 +240,6 @@ void MainWindow::on_undo_clicked()
            ui->code->setPlainText(undobuffer);
         replace=false;
     }
-}
-
-
-void MainWindow::on_code_blockCountChanged(int newBlockCount)
-{
-
-}
-
-void MainWindow::on_code_cursorPositionChanged()
-{
-
 }
 
 void MainWindow::on_code_selectionChanged()

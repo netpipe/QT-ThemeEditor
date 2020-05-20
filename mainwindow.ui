@@ -859,13 +859,6 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="replace_2">
-      <property name="text">
-       <string>replace</string>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="3">
      <widget class="QPushButton" name="undo">
       <property name="text">

@@ -35,13 +35,7 @@ private slots:
 
     void on_apply_clicked();
 
-    void on_replace_2_clicked();
-
     void on_undo_clicked();
-
-    void on_code_blockCountChanged(int newBlockCount);
-
-    void on_code_cursorPositionChanged();
 
     void on_code_selectionChanged();
 
