@@ -26,14 +26,14 @@ color:#3c78c1;</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="5" rowspan="5">
+    <item row="0" column="5" rowspan="6">
      <widget class="Line" name="line_3">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
      </widget>
     </item>
-    <item row="0" column="6" rowspan="5">
+    <item row="0" column="6" rowspan="6">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>0</number>
@@ -46,6 +46,41 @@ color:#3c78c1;</string>
         <string notr="true">Tab 1</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
+        <item row="4" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="Open">
+            <property name="text">
+             <string>OpenFile</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="Save">
+            <property name="text">
+             <string>SaveFile/apply</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="SaveAs">
+            <property name="text">
+             <string>SaveAs</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="search">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Search/Replace</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item row="0" column="0" colspan="2">
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
@@ -326,7 +361,7 @@ color:#3c78c1;</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" colspan="2">
+        <item row="6" column="0" colspan="2">
          <widget class="QComboBox" name="cmbTheme"/>
         </item>
        </layout>
@@ -693,7 +728,7 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>662</width>
+                <width>684</width>
                 <height>297</height>
                </rect>
               </property>
@@ -759,8 +794,8 @@ p, li { white-space: pre-wrap; }
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>98</width>
+                    <height>28</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -804,77 +839,54 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QLineEdit" name="lineFind"/>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="replace">
-      <property name="text">
-       <string>replace</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3" colspan="2">
-     <widget class="QLineEdit" name="lineReplace"/>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QPushButton" name="highlight">
-      <property name="text">
-       <string>Highlight</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" rowspan="2" colspan="5">
-     <widget class="Line" name="line_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QPushButton" name="Open">
-      <property name="text">
-       <string>OpenFile</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QPushButton" name="Save">
-      <property name="text">
-       <string>SaveFile/apply</string>
-      </property>
-     </widget>
+    <item row="3" column="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLineEdit" name="lineFind"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="replace">
+        <property name="text">
+         <string>replace</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineReplace"/>
+      </item>
+     </layout>
     </item>
     <item row="4" column="3">
-     <widget class="QPushButton" name="apply">
-      <property name="text">
-       <string>apply</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <widget class="QPushButton" name="search">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Search/Replace</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="3">
-     <widget class="QPushButton" name="undo">
-      <property name="text">
-       <string>undo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="color">
-      <property name="text">
-       <string>colorpicker</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QPushButton" name="highlight">
+        <property name="text">
+         <string>Highlight</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="color">
+        <property name="text">
+         <string>ColorPicker</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="undo">
+        <property name="text">
+         <string>Undo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="apply">
+        <property name="text">
+         <string>Apply</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -893,8 +905,26 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionExit"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="actionApply"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionundo"/>
+   </widget>
+   <widget class="QMenu" name="menutools">
+    <property name="title">
+     <string>tools</string>
+    </property>
+    <addaction name="actionColorPicker"/>
+    <addaction name="actionHighlight"/>
    </widget>
    <addaction name="menuMenu"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menutools"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -913,6 +943,36 @@ p, li { white-space: pre-wrap; }
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>SaveAs</string>
+   </property>
+  </action>
+  <action name="actionundo">
+   <property name="text">
+    <string>undo</string>
+   </property>
+  </action>
+  <action name="actionColorPicker">
+   <property name="text">
+    <string>ColorPicker</string>
+   </property>
+  </action>
+  <action name="actionHighlight">
+   <property name="text">
+    <string>Highlight</string>
+   </property>
+  </action>
+  <action name="actionApply">
+   <property name="text">
+    <string>Apply</string>
    </property>
   </action>
  </widget>

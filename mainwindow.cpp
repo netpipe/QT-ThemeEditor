@@ -40,6 +40,37 @@ dialog = new find2();
   }
 
 
+  QFile MyFile("themes.txt");
+  if(MyFile.exists()){
+      MyFile.open(QIODevice::ReadWrite);
+      QTextStream in (&MyFile);
+      QString line;
+      QStringList list;
+       //   QList<QString> nums;
+      QStringList nums;
+      QRegExp rx("[:]");
+      line = in.readLine();
+QString stylesheet;
+      if (line.contains(":")) {
+          list = line.split(rx);
+              qDebug() << "theme" <<  list.at(1).toLatin1();
+              stylesheet =  list.at(1).toLatin1();
+        loadStyleSheet( list.at(1).toLatin1());
+
+              MyFile.close();
+      }
+
+
+      QFile file(stylesheet);
+
+      file.open(QIODevice::Text | QIODevice::ReadOnly);
+      QString content;
+      while(!file.atEnd())
+          content.append(file.readLine());
+      ui->code->setPlainText(content);
+
+  }
+loaded=true;
 }
 
 MainWindow::~MainWindow()
@@ -82,7 +113,7 @@ void MainWindow::on_Open_clicked()
 void MainWindow::on_Save_clicked()
 {
     if (fileName.toLatin1()==""){
-    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("SaveRX/TX File (*.txt);;All Files (*)"));
+    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("SaveTheme File (*.txt);;All Files (*)"));
     }
 
     QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
@@ -337,6 +368,8 @@ void MainWindow::on_color_clicked()
 
 void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
 {
+    if (loaded==true)
+    {
     fileName=ui->cmbTheme->currentText();
     QFile file(fileName);
 
@@ -353,4 +386,84 @@ void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
     p.setColor(QPalette::Text, Qt::white);
     ui->code->setPalette(p);
     loadStyleSheet(ui->cmbTheme->currentText());
+
+    QFile file2("themes.txt");
+        if(file2.open(QIODevice::ReadWrite | QIODevice::Text))// QIODevice::Append |
+        {
+                QTextStream stream(&file2);
+                file2.seek(0);
+               stream << "theme:" << ui->cmbTheme->currentText().toLatin1()<< endl;
+                for (int i = 0; i < ui->cmbTheme->count(); i++)
+                {
+                 stream << "theme:" << ui->cmbTheme->itemText(i) << endl;
+                }
+            //                file.write("\n");
+               file2.close();
+        }
+
+    if (ui->cmbTheme->currentText().toLatin1() != ""){
+      //   ui->cmbTheme->currentText().toLatin1();
+    }
+}
+
+}
+
+void MainWindow::on_SaveAs_clicked()
+{
+    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("Save Theme File (*.css);;All Files (*)"));
+
+
+    QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
+    if (lines.count() > 3)
+      qDebug() << "fourth line:" << lines.at(3);
+
+
+    QFile file(fileName);
+       if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+       {
+           QTextStream stream(&file);
+           file.seek(0);
+           QTextCodec *fileCodec = QTextCodec::codecForName("windows-1250");
+           stream.setCodec(fileCodec);
+
+
+           for (int n = 0; n < lines.count() ; ++n)
+          {   //line = str.readLine();
+               stream << lines.at(n) << endl;
+        //     stream << ui->code->document()->toRawText();
+       }
+        //   stream << endl;
+            file.close();
+       }
+        qDebug() << "wrote/ saving ";
+}
+
+void MainWindow::on_actionColorPicker_triggered()
+{
+    on_color_clicked();
+}
+
+void MainWindow::on_actionundo_triggered()
+{
+on_undo_clicked();
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+on_Open_clicked();
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    on_Save_clicked();
+}
+
+void MainWindow::on_actionSaveAs_triggered()
+{
+    on_SaveAs_clicked();
+}
+
+void MainWindow::on_actionApply_triggered()
+{
+    on_apply_clicked();
 }
