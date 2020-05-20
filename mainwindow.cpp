@@ -241,7 +241,7 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
 
         QTextCursor highlightCursor(document);
         QTextCursor cursor(document);
-
+ //ui->code->cursor().setPos(0,0);
         cursor.beginEditBlock();
 
         QTextCharFormat plainFormat(highlightCursor.charFormat());
@@ -271,7 +271,7 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
 
 
         cursor.endEditBlock();
-       // isFirstTime = false;
+        isFirstTime = false;
 
         if (found == false) {
         //    QMessageBox::information(this, tr("Word Not Found"),                "Sorry, the word cannot be found.");
@@ -334,11 +334,11 @@ void MainWindow::on_highlight_clicked()
 
 
     undobuffer = ui->code->toPlainText();
-    undobuffer2 = undobuffer;
+    //undobuffer2 = undobuffer;
     QPlainTextEdit *test = ui->code;
     search(ui->lineFind->text().toLatin1(),test);
 
-    replace=true;
+  //  replace=true;
 }
 
 void MainWindow::on_apply_clicked()
