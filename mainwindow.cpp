@@ -60,7 +60,7 @@ QString stylesheet;
               MyFile.close();
       }
 
-
+fileName=stylesheet;
       QFile file(stylesheet);
 
       file.open(QIODevice::Text | QIODevice::ReadOnly);
@@ -478,7 +478,7 @@ void MainWindow::on_actionApply_triggered()
 
 void MainWindow::on_actionNew_triggered()
 {
-    fileName.toLatin1()=="";
+    fileName="";
     undobuffer = ui->code->toPlainText();
     undobuffer2 = undobuffer;
     undobuffer = "";
