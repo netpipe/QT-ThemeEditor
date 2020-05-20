@@ -76,44 +76,48 @@ void MainWindow::on_Save_clicked()
     }
 
     QFile file(fileName);
-       if(file.open(QIODevice::ReadWrite | QIODevice::Text))
+       if(file.open(QIODevice::WriteOnly | QIODevice::Text))
        {
            QTextStream stream(&file);
            file.seek(0);
            stream << ui->code->document()->toRawText();
         //   stream << endl;
-        file.close();
+            file.close();
        }
-
+        qDebug() << "wrote/ saving ";
        int counter=0;
 
 
        QString line;
 
-       QFile f(fileName);
-       if(f.open(QIODevice::ReadWrite | QIODevice::Text))
+     //  QFile f(fileName);
+       if(file.open(QIODevice::ReadOnly))
        {
            QString s;
-           QTextStream t(&f);
-            file.seek(0);
-           while(!t.atEnd())
-           {
+           QTextStream t(&file);
+        //    file.seek(0);
+
+           do {
                line = t.readLine();
-             counter++;
-           }
-           f.close();
+               counter++;
+           } while(!t.atEnd());
+
+           file.close();
        }
 
-line="";
+              qDebug() << "lines in file: " << counter;
 
-       QFile file2(fileName);
-          if(file2.open(QIODevice::ReadWrite | QIODevice::Text))
+
+        line="";
+
+     //  QFile file2(fileName);
+          if(file.open(QIODevice::ReadWrite | QIODevice::Text))
           {
-           QTextStream stream2(&file2);
+           QTextStream stream2(&file);
                          file.seek(0);
-            for (int i=0; i<counter-3; i++){
+            for (int i=0; i <= counter-3; i++){
                 line = stream2.readLine();
-
+                qDebug() << "writing line";
               stream2 << line;
              // stream << endl;
             }
