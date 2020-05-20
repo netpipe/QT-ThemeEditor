@@ -78,18 +78,22 @@ void MainWindow::on_Save_clicked()
            QTextStream stream(&file);
            file.seek(0);
 
-           stream << ui->code->toPlainText();
+           stream << ui->code->document()->toRawText();
 
         file.close();
        }
-loadStyleSheet( fileName.toLatin1());
+
+//loadStyleSheet( fileName.toLatin1() );
+
+qApp->setStyleSheet(ui->code->toPlainText());
+
 }
 
 void MainWindow::loadStyleSheet( QString sheet_name)
 {
     QFile file(sheet_name);
     file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
+    QString styleSheet = QString(file.readAll());
 
     qApp->setStyleSheet(styleSheet);
 }

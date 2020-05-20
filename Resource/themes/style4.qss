@@ -517,39 +517,3 @@ QLabel#lblTotalScore2 {
 }
 
 
-
-QTabBar::tab:!selected {
-	color:rgb(255,255,255);
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #4580fa, stop:1 #FFFFFF);
-            margin-bottom: 0px; 
-}
-
-QTabBar::tab:selected {
-	color:blue;
-}
-QTabBar::tab:disabled {
-    color: none;
-}
-
-QMessageBox{
-   background-color:white;
-}
-
-QToolTip{
-    font: 20pt;
-    font-family: "KP CheonRiMa";
-}
-
-QLabel#lblTotalScore2 {
-   font-size: 180pt;
-   font-family: KCC-R-13;
-   font-weight: bold;
-   color: red;
-}
-
-
-bold;
-   color: red;
-}
-
-
