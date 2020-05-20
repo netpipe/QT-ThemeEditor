@@ -1,0 +1,63 @@
+convert arrow_down.png -colorspace ohta -fuzz 11% -fill "rgb(25.1%,54.7%,38.2%)" -opaque "rgb(37.6%,78.2%,35.9%)" -set colorspace ohta -colorspace rgb foo.png
+
+
+convert $NAME.png -fuzz 0% -fill 'rgb(254,254,254)' -opaque 'rgb(255,255,255)' foo.png
+
+
+
+convert input.png -colorspace gray -fill green -tint 100 tinted.png
+
+With ImageMagick you would use "-tint" to preserve the blacks and whites while adding color to the mid tones. The operator "-colorize" would add a certain percentage of the fill color over the entire image. Try the same command above with "-colorize 50" instead of "-tint 100" to see the difference in results.
+
+
+convert sr3BsQF.png -modulate 100,0,100 +level-colors rgb(0,50%%,0),lime a.png
+
+convert arrow_down.png -colorspace gray +level-colors ,purple  image_purple.png
+
+
+  convert aqua_mask.png -alpha Extract -blur 0x6 -shade 120x21 \
+          -alpha On -normalize  aqua_shade.png
+
+
+  -contrast
+  -brightness-contrast
+-channel RGB -negate
+-channel RGB +negate
+convert arrow_down.png -colorspace gray +level-colors ,purple -channel RGB -negate image_purple.png
+
+
+
+http://www.imagemagick.org/Usage/color_mods/#modulate_hue
+
+convert arrow_down.png -modulate 100,100,0 test.png
+convert YPuLOBp.png -modulate 100,100,33.3 YPuLOBp_mod_hue_33.png
+convert YPuLOBp.png -modulate 100,100,66.6 YPuLOBp_mod_hue_66.png
+convert YPuLOBp.png -modulate 100,100,100 YPuLOBp_mod_hue_100.png
+convert YPuLOBp.png -modulate 100,100,133.3 YPuLOBp_mod_hue_133.png
+convert YPuLOBp.png -modulate 100,100,166.6 YPuLOBp_mod_hue_166.png
+convert YPuLOBp.png -modulate 100,100,200 YPuLOBp_mod_hue_200.png
+
+
+  convert cow.gif   +level-colors red,   cow_red.gif
+
+
+./colorbalance -c green -a 50 arrow_down.png test.png
+
+
+
+
+convert balloon.gif  -transparent blue   balloon_trans.gif
+
+
+FOR %G IN (*.png) DO magick "%G" -transparent #FF00FF "batch\%G"
+
+
+
+  convert test.png  +level-colors ,DodgerBlue   levelc_dodger.png
+  convert test.png  +level-colors ,Gold         levelc_gold.png
+  convert test.png  +level-colors ,Lime         levelc_lime.png
+  convert test.png  +level-colors ,Red          levelc_red.png
+
+  convert test.png  +level-colors Navy,         levelc_navy.png
+  convert test.png  +level-colors DarkGreen,    levelc_darkgreen.png
+  convert test.png  +level-colors Firebrick,    levelc_firebrick.png
