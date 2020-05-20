@@ -243,6 +243,7 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
         QTextCursor highlightCursor(document);
         QTextCursor cursor(document);
  //ui->code->cursor().setPos(0,0);
+    //    ui->code->viewport()->scroll()
         cursor.beginEditBlock();
 
         QTextCharFormat plainFormat(highlightCursor.charFormat());
@@ -250,8 +251,8 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
         colorFormat.setForeground(Qt::blue);
 
 
-
-
+//https://doc.bccnsoft.com/docs/PyQt4/qtextdocument.html
+//https://doc.qt.io/qt-5/qtwidgets-widgets-codeeditor-example.html
 
         while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
             highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
@@ -262,6 +263,19 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
                 highlightCursor.movePosition(QTextCursor::WordRight,
                                        QTextCursor::KeepAnchor,1);
                 highlightCursor.mergeCharFormat(colorFormat);
+                //document->find("word");
+                //moveCursor(QTextCursor::Start)
+               // ui->code->moveCursor(QTextCursor::Left, QTextCursor::MoveAnchor);
+            //    highlightCursor.a
+              //  QRect crect = ui->code->cursorRect().x;
+             //   highlightCursor
+//                cursor.clearSelection();
+//                cursor.insertText("Hello World");
+                //hasSelection
+              //  qDebug() << document->find("sheet").movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor);
+               // qDebug() << ui->code->cursorRect().x() << ui->code->cursorRect().y();
+             //   ui->code->viewport()->scroll(ui->code->cursorRect().x , ui->code->cursorRect().y);
+
                 // highlightCursor.hasSelection();
                 //    if (replace == true)
                 // highlightCursor.insertText(ui->lineReplace->text()+" ");
@@ -370,7 +384,7 @@ void MainWindow::on_code_selectionChanged()
 
 void MainWindow::on_color_clicked()
 {
-    QColor color = QColorDialog::getColor(Qt::black, this, "Pick a color",  QColorDialog::DontUseNativeDialog);
+    QColor color = QColorDialog::getColor(ui->lineFind->text(), this, "Pick a color",  QColorDialog::DontUseNativeDialog);
 
     // when color picked put it into lineReplace ui field
     ui->lineReplace->setText(color.name());
