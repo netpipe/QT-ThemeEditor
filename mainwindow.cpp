@@ -337,8 +337,9 @@ void MainWindow::on_color_clicked()
 
 void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
 {
+    fileName=ui->cmbTheme->currentText();
+    QFile file(fileName);
 
-    QFile file(ui->cmbTheme->currentText());
     file.open(QIODevice::Text | QIODevice::ReadOnly);
     QString content;
     while(!file.atEnd())
