@@ -25,6 +25,9 @@ public:
        QString undobuffer;
        QString undobuffer2;
         bool replace=false;
+        QString findbuf;
+        QString replacebuf;
+        bool colorundo=false;
 
 private slots:
     void on_Open_clicked();

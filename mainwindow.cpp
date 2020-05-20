@@ -334,7 +334,13 @@ void MainWindow::on_replace_clicked()
 
     replace=true;
 
+    findbuf=ui->lineFind->text();
+    replacebuf=ui->lineReplace->text();
+
+
     ui->lineFind->setText( ui->lineReplace->text());
+
+
 
 //    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
 //        {
@@ -361,6 +367,7 @@ void MainWindow::on_highlight_clicked()
 void MainWindow::on_apply_clicked()
 {
     qApp->setStyleSheet(ui->code->toPlainText());
+                colorundo=true;
 }
 
 
@@ -368,6 +375,11 @@ void MainWindow::on_apply_clicked()
 void MainWindow::on_undo_clicked()
 {
     if(replace){
+        if(colorundo){
+            ui->lineFind->setText(findbuf);
+            ui->lineReplace->setText(replacebuf);
+            colorundo=false;
+        }
            ui->code->setPlainText(undobuffer2);
         replace=false;
     }
@@ -388,6 +400,7 @@ void MainWindow::on_color_clicked()
 
     // when color picked put it into lineReplace ui field
     ui->lineReplace->setText(color.name());
+    colorundo=true;
 }
 
 void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
