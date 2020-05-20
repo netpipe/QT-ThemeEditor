@@ -81,11 +81,11 @@ void MainWindow::on_Save_clicked()
            QTextStream stream(&file);
            file.seek(0);
            stream << ui->code->document()->toRawText();
-           stream << endl;
+        //   stream << endl;
         file.close();
        }
 
-       int counter;
+       int counter=0;
 
 
        QString line;
@@ -95,6 +95,7 @@ void MainWindow::on_Save_clicked()
        {
            QString s;
            QTextStream t(&f);
+            file.seek(0);
            while(!t.atEnd())
            {
                line = t.readLine();
@@ -102,6 +103,7 @@ void MainWindow::on_Save_clicked()
            }
            f.close();
        }
+
 line="";
 
        QFile file2(fileName);
@@ -109,7 +111,7 @@ line="";
           {
            QTextStream stream2(&file2);
                          file.seek(0);
-            for (int i=0; i<counter-2; i++){
+            for (int i=0; i<counter-3; i++){
                 line = stream2.readLine();
 
               stream2 << line;
