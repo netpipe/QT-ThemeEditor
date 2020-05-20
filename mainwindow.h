@@ -22,7 +22,7 @@ public:
        void search(QString search,QPlainTextEdit *edit);
        QString undobuffer;
        QString undobuffer2;
-bool replace;
+bool replace=false;
 private slots:
     void on_Open_clicked();
 

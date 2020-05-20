@@ -243,7 +243,6 @@ void MainWindow::on_undo_clicked()
 
 void MainWindow::on_code_selectionChanged()
 {
-
     if(replace==true){
            ui->code->setPlainText(undobuffer);
         replace=false;
