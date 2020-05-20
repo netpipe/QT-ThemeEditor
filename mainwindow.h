@@ -40,6 +40,8 @@ private slots:
 
     void on_code_selectionChanged();
 
+    void on_color_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

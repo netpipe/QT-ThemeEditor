@@ -6,6 +6,7 @@
 #include <ui_find2.h>
 #include "find.h"
 #include <QDebug>
+#include <QColorDialog>
 
 find2 *dialog ;
 
@@ -253,4 +254,9 @@ void MainWindow::on_code_selectionChanged()
            ui->code->setPlainText(undobuffer);
         replace=false;
     }
+}
+
+void MainWindow::on_color_clicked()
+{
+    QColor color = QColorDialog::getColor(Qt::black, this, "Pick a color",  QColorDialog::DontUseNativeDialog);
 }
