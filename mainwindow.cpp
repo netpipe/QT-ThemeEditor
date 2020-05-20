@@ -319,6 +319,8 @@ void MainWindow::on_replace_clicked()
 
     replace=true;
 
+    ui->lineFind->setText( ui->lineReplace->text());
+
 //    while(ui->textEdit->find(findString, QTextDocument::FindFlag()))
 //        {
 //            //ui->textEdit->textCursor().movePosition(QTextCursor().Start, QTextCursor().MoveAnchor);
