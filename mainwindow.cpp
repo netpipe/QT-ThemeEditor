@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QColorDialog>
 #include <QDirIterator>
+#include <QTextCodec>
 
 find2 *dialog ;
 
@@ -84,12 +85,25 @@ void MainWindow::on_Save_clicked()
     fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("SaveRX/TX File (*.txt);;All Files (*)"));
     }
 
+    QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
+    if (lines.count() > 3)
+      qDebug() << "fourth line:" << lines.at(3);
+
+
     QFile file(fileName);
        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
        {
            QTextStream stream(&file);
            file.seek(0);
-           stream << ui->code->document()->toRawText();
+           QTextCodec *fileCodec = QTextCodec::codecForName("windows-1250");
+           stream.setCodec(fileCodec);
+
+
+           for (int n = 0; n < lines.count() ; ++n)
+          {   //line = str.readLine();
+               stream << lines.at(n) << endl;
+        //     stream << ui->code->document()->toRawText();
+       }
         //   stream << endl;
             file.close();
        }
