@@ -113,7 +113,7 @@ void MainWindow::on_Open_clicked()
 void MainWindow::on_Save_clicked()
 {
     if (fileName.toLatin1()==""){
-    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("SaveTheme File (*.txt);;All Files (*)"));
+    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "./Resource/themes/.css",  tr("SaveTheme File (*.txt);;All Files (*)"));
     }
 
     QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
@@ -246,7 +246,7 @@ void MainWindow::search(QString search,QPlainTextEdit *edit)
 
         QTextCharFormat plainFormat(highlightCursor.charFormat());
         QTextCharFormat colorFormat = plainFormat;
-        colorFormat.setForeground(Qt::red);
+        colorFormat.setForeground(Qt::blue);
 
 
 
@@ -354,6 +354,7 @@ void MainWindow::on_undo_clicked()
            ui->code->setPlainText(undobuffer2);
         replace=false;
     }
+    replace=false;
 }
 
 void MainWindow::on_code_selectionChanged()
@@ -416,8 +417,7 @@ void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_SaveAs_clicked()
 {
-    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "",  tr("Save Theme File (*.css);;All Files (*)"));
-
+    fileName = QFileDialog::getSaveFileName(this,  "Save Theme", "./Resource/themes/.css",  "Save Theme File (*.css)");
 
     QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
     if (lines.count() > 3)
@@ -472,4 +472,16 @@ void MainWindow::on_actionSaveAs_triggered()
 void MainWindow::on_actionApply_triggered()
 {
     on_apply_clicked();
+}
+
+void MainWindow::on_actionNew_triggered()
+{
+    fileName.toLatin1()=="";
+    undobuffer = ui->code->toPlainText();
+    undobuffer2 = undobuffer;
+    undobuffer = "";
+
+  //  ui->code->setPlainText(undobuffer.replace("load","test"));
+    ui->code->setPlainText(undobuffer.toLatin1());
+    replace=true;
 }
