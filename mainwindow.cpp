@@ -337,5 +337,19 @@ void MainWindow::on_color_clicked()
 
 void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
 {
+
+    QFile file(ui->cmbTheme->currentText());
+    file.open(QIODevice::Text | QIODevice::ReadOnly);
+    QString content;
+    while(!file.atEnd())
+        content.append(file.readLine());
+    ui->code->setPlainText(content);
+    file.close();
+
+
+    QPalette p = ui->code->palette();
+    p.setColor(QPalette::Base, Qt::red);
+    p.setColor(QPalette::Text, Qt::white);
+    ui->code->setPalette(p);
     loadStyleSheet(ui->cmbTheme->currentText());
 }
