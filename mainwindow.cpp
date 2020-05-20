@@ -102,7 +102,7 @@ void MainWindow::on_Save_clicked()
            }
            f.close();
        }
-
+line="";
 
        QFile file2(fileName);
           if(file2.open(QIODevice::ReadWrite | QIODevice::Text))
