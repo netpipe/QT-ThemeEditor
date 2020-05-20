@@ -113,8 +113,9 @@ void MainWindow::on_Open_clicked()
 void MainWindow::on_Save_clicked()
 {
     if (fileName.toLatin1()==""){
-    fileName = QFileDialog::getSaveFileName(this,  tr("Save TX"), "./Resource/themes/.css",  tr("SaveTheme File (*.txt);;All Files (*)"));
+    fileName = QFileDialog::getSaveFileName(this,  tr("Save theme"), "./Resource/themes/.qss",  tr("SaveTheme File (*.qss);;All Files (*)"));
     }
+    if (fileName == ""){return;}
 
     QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
     if (lines.count() > 3)
@@ -419,8 +420,8 @@ void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_SaveAs_clicked()
 {
-    fileName = QFileDialog::getSaveFileName(this,  "Save Theme", "./Resource/themes/.css",  "Save Theme File (*.css)");
-
+    fileName = QFileDialog::getSaveFileName(this,  "Save Theme", "./Resource/themes/.qss", tr("SaveTheme File (*.qss);;All Files (*)"));
+if (fileName == ""){return;}
     QStringList lines = ui->code->document()->toPlainText().split('\n', QString::SkipEmptyParts);
     if (lines.count() > 3)
       qDebug() << "fourth line:" << lines.at(3);
@@ -443,6 +444,7 @@ void MainWindow::on_SaveAs_clicked()
         //   stream << endl;
             file.close();
        }
+       ui->cmbTheme->addItem(fileName);
         qDebug() << "wrote/ saving ";
 }
 
