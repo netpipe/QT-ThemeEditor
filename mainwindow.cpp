@@ -80,11 +80,56 @@ void MainWindow::on_Save_clicked()
        {
            QTextStream stream(&file);
            file.seek(0);
-
            stream << ui->code->document()->toRawText();
-
+           stream << endl;
         file.close();
        }
+
+       int counter;
+
+
+       QString line;
+
+       QFile f(fileName);
+       if(f.open(QIODevice::ReadWrite | QIODevice::Text))
+       {
+           QString s;
+           QTextStream t(&f);
+           while(!t.atEnd())
+           {
+               line = t.readLine();
+             counter++;
+           }
+           f.close();
+       }
+
+
+       QFile file2(fileName);
+          if(file2.open(QIODevice::ReadWrite | QIODevice::Text))
+          {
+           QTextStream stream2(&file2);
+                         file.seek(0);
+            for (int i=0; i<counter-2; i++){
+                line = stream2.readLine();
+
+              stream2 << line;
+             // stream << endl;
+            }
+           file.close();
+          }
+
+
+//       QFile file(fileName);
+//          if(file.open(QIODevice::ReadWrite | QIODevice::Text))
+//          {
+//              QTextStream stream(&file);
+//              file.seek(0);
+
+
+//           file.close();
+//          }
+
+
 
 //loadStyleSheet( fileName.toLatin1() );
 
@@ -96,7 +141,7 @@ void MainWindow::loadStyleSheet( QString sheet_name)
 {
     QFile file(sheet_name);
     file.open(QFile::ReadOnly);
-    QString styleSheet = QString(file.readAll());
+    QString styleSheet = QLatin1String(file.readAll());
 
     qApp->setStyleSheet(styleSheet);
 }
