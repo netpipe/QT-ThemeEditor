@@ -331,11 +331,14 @@ void MainWindow::on_replace_clicked()
 void MainWindow::on_highlight_clicked()
 {
     isFirstTime = false;
-    replace=true;
 
+
+    undobuffer = ui->code->toPlainText();
+    undobuffer2 = undobuffer;
     QPlainTextEdit *test = ui->code;
     search(ui->lineFind->text().toLatin1(),test);
 
+    replace=true;
 }
 
 void MainWindow::on_apply_clicked()
