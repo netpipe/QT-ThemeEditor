@@ -7,6 +7,7 @@
 #include "find.h"
 #include <QDebug>
 #include <QColorDialog>
+#include <QDirIterator>
 
 find2 *dialog ;
 
@@ -29,6 +30,14 @@ ui->setupUi(this);
 dialog = new find2();
 
   connect(dialog, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
+
+
+  QDirIterator it("./Resource/themes/", QStringList() << "*.qss", QDir::Files, QDirIterator::Subdirectories);
+  while (it.hasNext()){
+    //  QFileInfo fileInfo(f.fileName());
+      ui->cmbTheme->addItem(it.next().toLatin1());
+  }
+
 
 }
 
@@ -310,4 +319,9 @@ void MainWindow::on_code_selectionChanged()
 void MainWindow::on_color_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::black, this, "Pick a color",  QColorDialog::DontUseNativeDialog);
+}
+
+void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
+{
+    loadStyleSheet(ui->cmbTheme->currentText());
 }

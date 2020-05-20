@@ -326,6 +326,9 @@ color:#3c78c1;</string>
           </property>
          </widget>
         </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QComboBox" name="cmbTheme"/>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
@@ -756,8 +759,8 @@ p, li { white-space: pre-wrap; }
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>98</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">

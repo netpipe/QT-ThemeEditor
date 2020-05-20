@@ -42,6 +42,8 @@ private slots:
 
     void on_color_clicked();
 
+    void on_cmbTheme_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };
