@@ -364,6 +364,9 @@ void MainWindow::on_code_selectionChanged()
 void MainWindow::on_color_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::black, this, "Pick a color",  QColorDialog::DontUseNativeDialog);
+
+    // when color picked put it into lineReplace ui field
+    ui->lineReplace->setText(color.name());
 }
 
 void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
